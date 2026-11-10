@@ -20,7 +20,7 @@
 #   zen-proxy.json                                      (config, generated)
 # So all of them live together in one writable /app directory.
 # ---------------------------------------------------------------------------
-FROM bun:1.2
+FROM oven/bun:1.2
 
 WORKDIR /app
 
