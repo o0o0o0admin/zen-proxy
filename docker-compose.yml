@@ -1,11 +1,10 @@
-# Run with:  docker compose up --build
+# Run with:  docker compose up
+# Pulls the pre-built image from ghcr.io (no build needed).
 # Then point any OpenAI-compatible client at:  http://127.0.0.1:8787/v1   (key: public)
 # Open the dashboard:                          http://127.0.0.1:8787/
 services:
   zen-proxy:
-    build:
-      context: .
-    image: zen-proxy:latest
+    image: ghcr.io/o0o0o0admin/zen-proxy:latest
     container_name: zen-proxy
 
     # Publish on the host's loopback.
