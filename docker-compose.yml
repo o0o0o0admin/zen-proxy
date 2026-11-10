@@ -1,0 +1,26 @@
+# Run with:  docker compose up --build
+# Then point any OpenAI-compatible client at:  http://127.0.0.1:8787/v1   (key: public)
+# Open the dashboard:                          http://127.0.0.1:8787/
+services:
+  zen-proxy:
+    build:
+      context: .
+    image: zen-proxy:latest
+    container_name: zen-proxy
+
+    # Publish on the host's loopback.
+    ports:
+      - "8787:8787"
+
+    # Everything the proxy needs is baked into the image; tune behaviour via env
+    # (see the repo README "Configuration"). Anonymous access ("Bearer public")
+    # is the default. For steadier service, bring your own Zen key:
+    #   environment:
+    #     - DEFAULT_ZEN_KEY=your-zen-key-here
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8787
+      # Optional: require clients to send this key (Authorization: Bearer / x-api-key)
+      # - PROXY_KEY=change-me
+
+    restart: unless-stopped
